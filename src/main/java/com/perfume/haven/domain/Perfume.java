@@ -56,14 +56,14 @@ public class Perfume {
     private String perfumeUrl;
 
     public String getPerfumeUrl() {
-		return perfumeUrl;
-	}
+        return perfumeUrl;
+    }
 
-	public void setPerfumeUrl(String perfumeUrl) {
-		this.perfumeUrl = perfumeUrl;
-	}
+    public void setPerfumeUrl(String perfumeUrl) {
+        this.perfumeUrl = perfumeUrl;
+    }
 
-	public Perfume() {
+    public Perfume() {
     }
 
     public Perfume(Long id, String perfumeTitle, String perfumer, Integer year, String country, String perfumeGender,
@@ -184,7 +184,6 @@ public class Perfume {
         this.type = type;
     }
 
-    // equals() and hashCode() methods
     @Override
     public boolean equals(Object o) {
         if (this == o)

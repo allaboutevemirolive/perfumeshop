@@ -1,6 +1,6 @@
 package com.perfume.haven.domain;
 
-import jakarta.persistence.*; // Updated to use jakarta.persistence
+import jakarta.persistence.*;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
