@@ -54,11 +54,14 @@ public class User {
     private Set<Role> roles;
 
     @ManyToMany
+    @JoinTable(name = "users_perfume_list", // Name of the join table
+            joinColumns = @JoinColumn(name = "user_id"), // Foreign key to the users table
+            inverseJoinColumns = @JoinColumn(name = "perfume_list_id") // Foreign key to the perfumes table
+    )
     private List<Perfume> perfumeList;
 
-    
     public User() {
-    } 
+    }
 
     // Parameterized constructor
     public User(Long id, String email, String password, String firstName, String lastName, String city, String address,
@@ -177,7 +180,6 @@ public class User {
     public void setPerfumeList(List<Perfume> perfumeList) {
         this.perfumeList = perfumeList;
     }
-
 
     @Override
     public boolean equals(Object o) {
