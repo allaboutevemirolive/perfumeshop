@@ -1,0 +1,98 @@
+<th:block th:fragment="account-sidebar" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+    <div class="col-md-2">
+        <h4>
+            <i class="fas fa-user-edit mr-1"></i>
+            Account
+        </h4>
+        <a class="account-sidebar-link nav-link" href="/user/info">Personal data</a>
+        <a class="account-sidebar-link nav-link" href="/user/reset">Change password</a>
+        <th:block sec:authorize="hasAuthority('ADMIN')">
+            <a class="account-sidebar-link nav-link" href="/admin/add/perfume">Add perfume</a>
+            <a class="account-sidebar-link nav-link" href="/admin/perfumes">List of perfumes</a>
+            <a class="account-sidebar-link nav-link" href="/admin/orders">List of all orders</a>
+            <a class="account-sidebar-link nav-link" href="/admin/users">List of all users</a>
+        </th:block>
+        <th:block sec:authorize="hasAuthority('USER')">
+            <a class="account-sidebar-link nav-link" href="/order/user/orders">List of orders</a>
+        </th:block>
+    </div>
+</th:block>
+
+<th:block th:fragment="edit-perfume-input">
+    <div class="form-group row">
+        <label class="col-sm-4 font-weight-bold col-form-label" th:text="${title} + ':'"></label>
+        <div class="col-sm-8">
+            <input
+                    type="text"
+                    th:name="${name}"
+                    th:value="${value}"
+                    class="form-control" th:classappend="${error} ? ' is-invalid'"
+            />
+            <div th:if="${error}" class="invalid-feedback" th:text="${error}"></div>
+        </div>
+    </div>
+</th:block>
+
+<th:block th:fragment="edit-perfume-select">
+    <div class="form-group row">
+        <label class="col-sm-4 font-weight-bold col-form-label" th:text="${title} + ':'"></label>
+        <div class="col-sm-8">
+            <select th:name="${name}" class="form-control" th:classappend="${error} ? ' is-invalid'">
+                <option th:each="option : ${options}" th:value="${option}" th:text="${option}"
+                        th:selected="${value == option}"></option>
+            </select>
+            <div th:if="${error}" class="invalid-feedback" th:text="${error}"></div>
+        </div>
+    </div>
+</th:block>
+
+<th:block th:fragment="add-perfume-input">
+    <div class="col">
+        <label th:text="${title} + ':'"></label>
+        <input
+                type="text"
+                th:name="${name}"
+                th:placeholder="${placeholder}"
+                th:value="${value}"
+                class="form-control" th:classappend="${error} ? ' is-invalid'"
+        />
+        <div th:if="${error}" class="invalid-feedback" th:text="${error}"></div>
+    </div>
+</th:block>
+
+<th:block th:fragment="add-perfume-select">
+    <div class="col">
+        <label th:text="${title} + ':'"></label>
+        <select th:name="${name}" class="form-control" th:classappend="${error} ? ' is-invalid'">
+            <option hidden value=""></option>
+            <option th:each="option : ${options}" th:value="${option}" th:text="${option}"></option>
+        </select>
+        <div th:if="${error}" class="invalid-feedback" th:text="${error}"></div>
+    </div>
+</th:block>
+
+<th:block th:fragment="user-info">
+    <div class="col-md-4 mb-5">
+        <th:block th:replace="fragments/common-fragments :: info-title(
+            text='Personal data',
+            icon='fas fa-address-card mr-2'
+        )"/>
+        <th:block th:replace="fragments/common-fragments :: alert-message"/>
+        <th:block th:replace="fragments/common-fragments :: data-item(title='Email', text=${user.getEmail()})" />
+        <th:block th:replace="fragments/common-fragments :: data-item(title='First name', text=${user.getFirstName()})" />
+        <th:block th:replace="fragments/common-fragments :: data-item(title='Last name', text=${user.getLastName()})" />
+        <th:block th:replace="fragments/common-fragments :: data-item(title='City', text=${user.getCity()})" />
+        <th:block th:replace="fragments/common-fragments :: data-item(title='Address', text=${user.getAddress()})" />
+        <th:block th:replace="fragments/common-fragments :: data-item(title='Phone number', text=${user.getPhoneNumber()})" />
+        <th:block th:replace="fragments/common-fragments :: data-item(title='Post index', text=${user.getPostIndex()})" />
+        <a th:with="isUserEditOpen=${#request.getRequestURI() == '/user/info/edit'}"
+           th:href="@{${isUserEditOpen} ? '/user/info' : '/user/info/edit'}"
+           role="button">
+            <th:block th:replace="fragments/common-fragments :: icon-button(
+                text=(${isUserEditOpen} ? 'Hide' : 'Edit'),
+                icon=(${isUserEditOpen} ? 'fas fa-eye-slash mr-2' : 'fas fa-edit mr-2'),
+                buttonClassName='mt-2'
+            )"/>
+        </a>
+    </div>
+</th:block>
