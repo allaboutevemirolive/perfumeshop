@@ -113,8 +113,7 @@
         </th:block>
         <th:block th:if="${i != -1 and i - 1 != page.number}">
           <li class="page-item">
-            <a class="page-link text-dark"
-              th:href="@{${servletUriComponentsBuilderWrapper.fromCurrentRequest().replaceQueryParam('page', (i - 1)).replaceQueryParam('size', page.size).build().toUriString()}}"
+            <a class="page-link text-dark" th:href="@{${baseUri} + '?page=' + (i - 1) + '&size=' + ${page.size}}"
               th:text="${i}"></a>
           </li>
         </th:block>
@@ -137,15 +136,66 @@
         </th:block>
         <th:block th:unless="${c} == ${page.size}">
           <li class="page-item">
-            <a class="page-link text-dark"
-              th:href="@{${servletUriComponentsBuilderWrapper.fromCurrentRequest().replaceQueryParam('page', 0).replaceQueryParam('size', c).build().toUriString()}}"
-              th:text="${c}"></a>
+            <a class="page-link text-dark" th:href="@{${baseUri} + '?page=0&size=' + ${c}}" th:text="${c}"></a>
           </li>
         </th:block>
       </th:block>
     </div>
   </ul>
 </th:block>
+
+
+<!-- <th:block th:fragment="pagination"> -->
+<!-- <ul class="pagination d-flex justify-content-between" th:classappend="${class}"> -->
+<!-- <div class="d-flex"> -->
+<!-- <li class="page-item disabled"> -->
+<!-- <a class="page-link" href="#" tabindex="-1">Pages</a> -->
+<!-- </li> -->
+<!-- <th:block th:each="i : ${pagination}"> -->
+<!-- <th:block th:if="${i - 1 == page.number}"> -->
+<!-- <li class="page-item active"> -->
+<!-- <a class="page-link bg-dark border-dark" href="#" th:text="${i}"></a> -->
+<!-- </li> -->
+<!-- </th:block> -->
+<!-- <th:block th:if="${i != -1 and i - 1 != page.number}"> -->
+<!-- <li class="page-item"> -->
+<!-- <a class="page-link text-dark" <!-- -->
+<!-- th:href="@{${servletUriComponentsBuilderWrapper.fromCurrentRequest().replaceQueryParam('page', (i - 1)).replaceQueryParam('size', page.size).build().toUriString()}}" -->
+<!-- --> -->
+<!-- th:href="@{${baseUri}}" -->
+<!-- th:text="${i}"></a> -->
+<!-- </li> -->
+<!-- </th:block> -->
+<!-- <th:block th:if="${i == -1}"> -->
+<!-- <li class="page-item disabled"> -->
+<!-- <a class="page-link text-dark" href="#">...</a> -->
+<!-- </li> -->
+<!-- </th:block> -->
+<!-- </th:block> -->
+<!-- </div> -->
+<!-- <div class="d-flex"> -->
+<!-- <li class="page-item disabled ml-5"> -->
+<!-- <a class="page-link text-dark" href="#" tabindex="-1">Items per page</a> -->
+<!-- </li> -->
+<!-- <th:block th:each="c : ${#numbers.sequence(12, 36, 12)}"> -->
+<!-- <th:block th:if="${c} == ${page.size}"> -->
+<!-- <li class="page-item active"> -->
+<!-- <a class="page-link bg-dark border-dark" href="#" th:text="${c}"></a> -->
+<!-- </li> -->
+<!-- </th:block> -->
+<!-- <th:block th:unless="${c} == ${page.size}"> -->
+<!-- <li class="page-item"> -->
+<!-- <a class="page-link text-dark" <!-- -->
+<!-- th:href="@{${servletUriComponentsBuilderWrapper.fromCurrentRequest().replaceQueryParam('page', 0).replaceQueryParam('size', c).build().toUriString()}}" -->
+<!-- --> -->
+<!-- th:href="@{${baseUri}}" -->
+<!-- th:text="${c}"></a> -->
+<!-- </li> -->
+<!-- </th:block> -->
+<!-- </th:block> -->
+<!-- </div> -->
+<!-- </ul> -->
+<!-- </th:block> -->
 
 <!-- <th:block th:fragment="pagination"> -->
 <!-- <ul class="pagination d-flex justify-content-between " th:classappend="${class}" -->

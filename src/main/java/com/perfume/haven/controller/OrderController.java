@@ -2,11 +2,14 @@ package com.perfume.haven.controller;
 
 import com.perfume.haven.constants.Pages;
 import com.perfume.haven.constants.PathConstants;
+import com.perfume.haven.domain.Order;
 import com.perfume.haven.domain.User;
 import com.perfume.haven.dto.request.OrderRequest;
 import com.perfume.haven.service.OrderService;
 import com.perfume.haven.service.UserService;
 import com.perfume.haven.utils.ControllerUtils;
+
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,7 +18,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 
 @Controller
@@ -45,10 +50,32 @@ public class OrderController {
     }
 
     @GetMapping("/user/orders")
-    public String getUserOrdersList(Model model, Pageable pageable) {
-        controllerUtils.addPagination(model, orderService.getUserOrdersList(pageable));
+    public String getUserOrdersList(Model model, Pageable pageable, HttpServletRequest request) {
+        Page<Order> orders = orderService.getUserOrdersList(pageable);
+        controllerUtils.addPagination(model, orders);
+
+        // Build the base URI for pagination links
+        String baseUri = ServletUriComponentsBuilder.fromRequestUri(request)
+                .replaceQueryParam("page")
+                .replaceQueryParam("size")
+                .toUriString();
+        model.addAttribute("baseUri", baseUri);
+
         return Pages.ORDERS;
     }
+
+    // @GetMapping("/user/orders")
+    // public String getUserOrdersList(Model model, Pageable pageable) {
+    // controllerUtils.addPagination(model,
+    // orderService.getUserOrdersList(pageable));
+
+    // String requestUri =
+    // servletUriComponentsBuilderWrapper.fromCurrentRequest().replaceQueryParam('page',
+    // 0).replaceQueryParam('size', c).build().toUriString()
+    // model.addAttribute("requestUri", requestUri);
+
+    // return Pages.ORDERS;
+    // }
 
     @PostMapping
     public String postOrder(@Valid OrderRequest orderRequest, BindingResult bindingResult, Model model) {
