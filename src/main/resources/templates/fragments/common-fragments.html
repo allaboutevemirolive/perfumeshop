@@ -113,7 +113,7 @@
         </th:block>
         <th:block th:if="${i != -1 and i - 1 != page.number}">
           <li class="page-item">
-            <a class="page-link text-dark" th:href="@{${baseUri} + '?page=' + (i - 1) + '&size=' + ${page.size}}"
+            <a class="page-link text-dark" th:href="@{${baseUri} + '?page=' + __${i - 1}__ + '&size=' + ${page.size}}"
               th:text="${i}"></a>
           </li>
         </th:block>
@@ -143,7 +143,6 @@
     </div>
   </ul>
 </th:block>
-
 
 <!-- <th:block th:fragment="pagination"> -->
 <!-- <ul class="pagination d-flex justify-content-between" th:classappend="${class}"> -->
