@@ -27,7 +27,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.UUID;
 
-// ("adminServiceImpl")
 @Service("adminServiceImpl")
 public class AdminServiceImpl implements AdminService {
 

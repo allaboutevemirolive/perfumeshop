@@ -8,6 +8,10 @@ import com.perfume.haven.dto.request.OrderRequest;
 import com.perfume.haven.service.OrderService;
 import com.perfume.haven.service.UserService;
 import com.perfume.haven.utils.ControllerUtils;
+import com.perfume.haven.utils.PrintForTest;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -54,28 +58,15 @@ public class OrderController {
         Page<Order> orders = orderService.getUserOrdersList(pageable);
         controllerUtils.addPagination(model, orders);
 
-        // Build the base URI for pagination links
         String baseUri = ServletUriComponentsBuilder.fromRequestUri(request)
                 .replaceQueryParam("page")
                 .replaceQueryParam("size")
                 .toUriString();
+
         model.addAttribute("baseUri", baseUri);
 
         return Pages.ORDERS;
     }
-
-    // @GetMapping("/user/orders")
-    // public String getUserOrdersList(Model model, Pageable pageable) {
-    // controllerUtils.addPagination(model,
-    // orderService.getUserOrdersList(pageable));
-
-    // String requestUri =
-    // servletUriComponentsBuilderWrapper.fromCurrentRequest().replaceQueryParam('page',
-    // 0).replaceQueryParam('size', c).build().toUriString()
-    // model.addAttribute("requestUri", requestUri);
-
-    // return Pages.ORDERS;
-    // }
 
     @PostMapping
     public String postOrder(@Valid OrderRequest orderRequest, BindingResult bindingResult, Model model) {

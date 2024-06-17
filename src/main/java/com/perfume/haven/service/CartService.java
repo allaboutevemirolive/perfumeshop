@@ -4,11 +4,13 @@ import com.perfume.haven.domain.Perfume;
 
 import java.util.List;
 
+import org.springframework.http.ResponseEntity;
+
 public interface CartService {
 
     List<Perfume> getPerfumesInCart();
 
-    void addPerfumeToCart(Long perfumeId);
+    ResponseEntity<String> addPerfumeToCart(Long perfumeId);
 
-    void removePerfumeFromCart(Long perfumeId);
+    ResponseEntity<String> removePerfumeFromCart(Long perfumeId);
 }
