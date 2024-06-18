@@ -8,7 +8,6 @@ import com.perfume.haven.dto.request.OrderRequest;
 import com.perfume.haven.service.OrderService;
 import com.perfume.haven.service.UserService;
 import com.perfume.haven.utils.ControllerUtils;
-import com.perfume.haven.utils.PrintForTest;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,6 +57,9 @@ public class OrderController {
         Page<Order> orders = orderService.getUserOrdersList(pageable);
         controllerUtils.addPagination(model, orders);
 
+        // Replaces the values of the "page" and "size" query parameters with null.
+        // So, we creates a string representation of the modified URI, without the
+        // "page" and "size" parameters.
         String baseUri = ServletUriComponentsBuilder.fromRequestUri(request)
                 .replaceQueryParam("page")
                 .replaceQueryParam("size")

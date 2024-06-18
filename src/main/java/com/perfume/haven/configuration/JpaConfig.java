@@ -15,15 +15,15 @@ public class JpaConfig {
     public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource) {
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(dataSource);
-        em.setPackagesToScan("com.perfume.haven.domain"); // Replace with your entity package
+        em.setPackagesToScan("com.perfume.haven.domain");
 
         JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         em.setJpaVendorAdapter(vendorAdapter);
 
-        // Explicitly set the EntityManagerFactory interface
-        em.setEntityManagerFactoryInterface(EntityManagerFactory.class); 
+        // Explicitly set the EntityManagerFactory interface to avoid conflict between
+        // the EntityManagerFactory interfaces used by Spring and Hibernate.
+        em.setEntityManagerFactoryInterface(EntityManagerFactory.class);
 
         return em;
     }
 }
-

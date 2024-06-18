@@ -1,7 +1,15 @@
 package com.perfume.haven.domain;
 
-import jakarta.persistence.*;
+// import jakarta.persistence.*;
 import java.util.Objects;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.SequenceGenerator;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "perfumes")
@@ -51,17 +59,6 @@ public class Perfume {
 
     @Column(name = "type", nullable = false)
     private String type;
-
-    @Transient // This annotation indicates that the field is not persisted in the database
-    private String perfumeUrl;
-
-    public String getPerfumeUrl() {
-        return perfumeUrl;
-    }
-
-    public void setPerfumeUrl(String perfumeUrl) {
-        this.perfumeUrl = perfumeUrl;
-    }
 
     public Perfume() {
     }

@@ -1,6 +1,5 @@
 package com.perfume.haven.controller;
 
-import com.perfume.haven.configuration.ServletUriComponentsBuilderWrapper;
 import com.perfume.haven.constants.Pages;
 import com.perfume.haven.constants.PathConstants;
 import com.perfume.haven.dto.request.SearchRequest;
@@ -9,7 +8,6 @@ import com.perfume.haven.utils.ControllerUtils;
 
 import jakarta.servlet.http.HttpServletRequest;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,9 +23,6 @@ public class PerfumeController {
     private final PerfumeService perfumeService;
     private final ControllerUtils controllerUtils;
 
-    @Autowired
-    private ServletUriComponentsBuilderWrapper servletUriComponentsBuilderWrapper;
-
     public PerfumeController(PerfumeService perfumeService, ControllerUtils controllerUtils) {
         this.perfumeService = perfumeService;
         this.controllerUtils = controllerUtils;
@@ -40,23 +35,26 @@ public class PerfumeController {
     }
 
     @GetMapping
-    public String getPerfumesByFilterParams(SearchRequest request, Model model, Pageable pageable,  HttpServletRequest servletRequest) {
+    public String getPerfumesByFilterParams(SearchRequest request, Model model, Pageable pageable,
+            HttpServletRequest servletRequest) {
         controllerUtils.addPagination(request, model, perfumeService.getPerfumesByFilterParams(request, pageable));
-        model.addAttribute("servletUriComponentsBuilderWrapper", servletUriComponentsBuilderWrapper);
+
+        // Replaces the values of the "page" and "size" query parameters with null.
+        // So, we creates a string representation of the modified URI, without the
+        // "page" and "size" parameters.
         String baseUri = ServletUriComponentsBuilder.fromRequestUri(servletRequest)
                 .replaceQueryParam("page")
                 .replaceQueryParam("size")
                 .toUriString();
 
         model.addAttribute("baseUri", baseUri);
-        
+
         return Pages.PERFUMES;
     }
 
     @GetMapping("/search")
     public String searchPerfumes(SearchRequest request, Model model, Pageable pageable) {
         controllerUtils.addPagination(request, model, perfumeService.searchPerfumes(request, pageable));
-        model.addAttribute("servletUriComponentsBuilderWrapper", servletUriComponentsBuilderWrapper);
         return Pages.PERFUMES;
     }
 
