@@ -22,6 +22,10 @@ public class JpaConfig {
 
         // Explicitly set the EntityManagerFactory interface to avoid conflict between
         // the EntityManagerFactory interfaces used by Spring and Hibernate.
+        // See:
+        // https://github.com/spring-projects/spring-boot/issues/39753
+        // https://stackoverflow.com/q/78078183/16768401
+        //
         em.setEntityManagerFactoryInterface(EntityManagerFactory.class);
 
         return em;
