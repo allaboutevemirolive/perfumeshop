@@ -8,14 +8,6 @@ body {
   font-family: 'Heebo', sans-serif;
 }
 
-/* footer { */
-/* position: absolute; */
-/* bottom: 0; */
-/* width: 100%; */
-/* height: 25vh; */
-/* margin-top: 50px; */
-/* } */
-
 footer {
   position: absolute;
   bottom: 0;
@@ -40,6 +32,22 @@ footer {
   text-align: center;
   width: 40px;
 }
+
+/* ==================================== */
+
+input[type="text"] {
+  width: 400px;
+}
+
+.col-md-5 {
+  text-align: right;
+}
+
+.search-button {
+  padding: 50px 105px;
+}
+
+/* ==================================== */
 
 /* NAVBAR */
 #navbar-main a {
