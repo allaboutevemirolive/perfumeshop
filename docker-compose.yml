@@ -1,0 +1,23 @@
+version: '3'
+services:
+  haven-app:  # Name of your Spring Boot application service
+    build: .   # Build the image from the Dockerfile in the current directory
+    ports:
+      - "8080:8080"  # Map port 8080 in the container to 8080 on the host
+    depends_on:   
+      - postgresdb  # Make sure the database starts before the app
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgresdb:5432/perfume
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=123456789
+      - RECAPTCHA_SECRET=6Lc5cLkZAAAAANUjd4--Jx6PioSC_N-9MFKT3PsA 
+    volumes:
+      - ./src/main/resources/uploads:/app/src/main/resources/uploads # Mount uploads directory
+  postgresdb:  # Name of your PostgreSQL database service
+    image: postgres:latest  # Use the latest official PostgreSQL image
+    environment:
+      - POSTGRES_DB=perfume  # Name of the database to create
+      - POSTGRES_USER=postgres  # Database username
+      - POSTGRES_PASSWORD=123456789  # Database password
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data  # Persist database data

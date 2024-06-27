@@ -31,3 +31,9 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### Environment Variable ###
+.env
+
+### postgre ###
+postgres-data/
