@@ -15,7 +15,25 @@
 
 
 
-## How to Run PerfumeShop
+## Running with Docker
+
+1. **Get the JAR:** Download the JAR file from the GitHub releases and place it in the project's root directory.
+
+2. **Stop Existing Containers:**
+
+   ```bash
+   sudo docker-compose down
+   ```
+
+3. **Build and Run:**
+
+   ```bash
+   sudo docker-compose up --build
+   ```
+4. **Access Your App:** Visit http://localhost:8080 in your web browser.
+
+
+## How to Run PerfumeShop locally
 
 ### 1. Verify the environmental information you have
 
