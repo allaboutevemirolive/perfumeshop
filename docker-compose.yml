@@ -1,23 +1,28 @@
-version: '3'
+version: '3.8'  
+
 services:
-  haven-app:  # Name of your Spring Boot application service
-    build: .   # Build the image from the Dockerfile in the current directory
+  haven-app:  
+    build: .  
     ports:
-      - "8080:8080"  # Map port 8080 in the container to 8080 on the host
-    depends_on:   
-      - postgresdb  # Make sure the database starts before the app
+      - "8080:8080"  
+    depends_on:
+      - haven-database  
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgresdb:5432/perfume
-      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://haven-database:5432/perfume?currentSchema=perfume_migrations
+      # - SPRING_DATASOURCE_URL=jdbc:postgresql://localhost:5432/perfume
+      - SPRING_DATASOURCE_USERNAME=haven_app
       - SPRING_DATASOURCE_PASSWORD=123456789
-      - RECAPTCHA_SECRET=6Lc5cLkZAAAAANUjd4--Jx6PioSC_N-9MFKT3PsA 
-    volumes:
-      - ./src/main/resources/uploads:/app/src/main/resources/uploads # Mount uploads directory
-  postgresdb:  # Name of your PostgreSQL database service
-    image: postgres:latest  # Use the latest official PostgreSQL image
+      - SPRING_FLYWAY_SCHEMAS=perfume_migrations
+      - SPRING_JPA_PROPERTIES_HIBERNATE_DEFAULT_SCHEMA=perfume_migrations
+
+  haven-database:  
+    image: postgres:15.3  
     environment:
-      - POSTGRES_DB=perfume  # Name of the database to create
-      - POSTGRES_USER=postgres  # Database username
-      - POSTGRES_PASSWORD=123456789  # Database password
+      - POSTGRES_DB=perfume
+      - POSTGRES_USER=haven_app
+      - POSTGRES_PASSWORD=123456789
     volumes:
-      - ./postgres-data:/var/lib/postgresql/data  # Persist database data
+      - postgres-data:/var/lib/postgresql/data  
+
+volumes:
+  postgres-data:  
