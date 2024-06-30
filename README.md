@@ -221,7 +221,10 @@ User profile page  |  Add perfume page
 
 See [NCOC](https://github.com/domgetter/NCoC/blob/master/README.md).
 
-## License
 
-See [Unlicense](https://github.com/IQAndreas/markdown-licenses/blob/master/unlicense.md).
+## Connect with Me
 
+- **Email**: [akmal.fir010@gmail.com](mailto:akmal.fir010@gmail.com)
+- **Telegram**: [@akmxlfirdaus](https://t.me/akmxlfirdaus)
+- **Twitter**: [@akmalfirdxus](https://twitter.com/akmalfirdxus)
+- **Instagram**: [@akmxlfirdaus](https://www.instagram.com/akmxlfirdaus)
