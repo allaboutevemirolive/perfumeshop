@@ -4,20 +4,19 @@
 
 **Tech Stack:**
 
-* **Language:** Java
+* **Language:** JDK 21
 * **Framework:** Spring Boot
 * **Frontend:** Thymeleaf
-* **Databases:** PostgreSQL or MySQL
+* **Databases:** PostgreSQL
 * **Migrations:** Flyway
 * **ORM:** Hibernate, Jakarta Persistence
 * **Security:** Spring Security, JWT
-* **Other:** Spring Mail, ModelMapper
-
-
+* **Other:** Spring Mail, ModelMapper, 
+* **Misc:** No Lombok
 
 ## Running with Docker
 
-1. **Get the JAR:** Download the JAR file from the GitHub releases and place it in the project's root directory.
+1. **Get the JAR:** Download the JAR file from the GitHub releases and `place it in the project's root directory`.
 
 2. **Stop Existing Containers:**
 
@@ -198,6 +197,24 @@ See [StackOverflow Question](https://stackoverflow.com/q/75463561/16768401) for 
 
     
 </details>
+
+## Screenshots
+
+Menu page      |  Product page
+:------------------------:|:-------------------------:
+![Menu page](https://i.ibb.co/rkSZ5Qq/1.png)  |  ![Product page](https://i.ibb.co/4jk3R0s/2.png)
+
+Cart  |  Ordering
+:------------------------:|:-------------------------:
+![Cart](https://i.ibb.co/mBKP5F3/3.png)  |  ![Ordering](https://i.ibb.co/WVRdRW1/4.png)
+
+Email template  |  List of orders
+:------------------------:|:-------------------------:
+![Email template](https://i.ibb.co/bmKTLPJ/email-template.jpg)  |  ![List of orders](https://i.ibb.co/Rp21f3k/5.png)
+
+User profile page  |  Add perfume page
+:------------------------:|:-------------------------:
+![User profile page](https://i.ibb.co/Fz1dB7L/6.png)  |  ![Add perfume page](https://i.ibb.co/ykX4hcG/7.png)
 
 
 ## Code of Conduct
