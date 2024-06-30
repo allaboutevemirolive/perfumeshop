@@ -1,11 +1,11 @@
 <!doctype html>
 <html xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="fragments/common-fragments :: head"></head>
+<head th:replace="~{fragments/common-fragments :: head}"></head>
 
 <body>
     <div th:insert="~{fragments/common-fragments :: scripts}"></div>
-    <div th:replace="fragments/common-fragments :: navbar"></div>
+    <div th:replace="~{fragments/common-fragments :: navbar}"></div>
     <div id="container" class="bg-light">
         <div class="py-5">
             <div class="container py-5 bg-white shadow-sm card-height">

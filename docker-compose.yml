@@ -1,0 +1,28 @@
+version: '3.8'  
+
+services:
+  haven-app:  
+    build: .  
+    ports:
+      - "8080:8080"  
+    depends_on:
+      - haven-database  
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://haven-database:5432/perfume?currentSchema=perfume_migrations
+      # - SPRING_DATASOURCE_URL=jdbc:postgresql://localhost:5432/perfume
+      - SPRING_DATASOURCE_USERNAME=haven_app
+      - SPRING_DATASOURCE_PASSWORD=123456789
+      - SPRING_FLYWAY_SCHEMAS=perfume_migrations
+      - SPRING_JPA_PROPERTIES_HIBERNATE_DEFAULT_SCHEMA=perfume_migrations
+
+  haven-database:  
+    image: postgres:15.3  
+    environment:
+      - POSTGRES_DB=perfume
+      - POSTGRES_USER=haven_app
+      - POSTGRES_PASSWORD=123456789
+    volumes:
+      - postgres-data:/var/lib/postgresql/data  
+
+volumes:
+  postgres-data:  
