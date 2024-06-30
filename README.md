@@ -113,61 +113,33 @@ SSD model: Samsung SSD 860 EVO 500GB
     \c perfume
     ```
 
-6. Grant privileges on the schema:
-
-    ```sql
-    GRANT ALL ON SCHEMA public TO haven_app;
-    ```
-
-7. Run the Flyway migration script:
-
-    ```sh
-    mvn flyway:migrate -Dflyway.url=jdbc:postgresql://localhost/perfume -Dflyway.user=haven_app -Dflyway.password=123456789
-    ```
-
-</details>
-
-### 3. Optional and `can be skip` ( _Bring your own schema!_ )
-
-<details>
-<summary>Click to expand!</summary>
-
-
-If you prefer not to use the `public` schema, you can create a new schema and grant privileges as shown below. Then, skip step 6 in the database setup and continue with step below. Change `perfume_migrations` with schema's name you want.
-
-1. Create a new schema:
+6. Create a new schema:
 
     ```sql
     CREATE SCHEMA perfume_migrations;
     ```
 
-2. Grant privileges on the new schema:
+7. Grant privileges on the new schema:
 
     ```sql
     GRANT ALL ON SCHEMA perfume_migrations TO haven_app;
     ```
 
-3. Uncomment the following lines in `application.properties` to use the new schema:
-
-    ```properties
-    # spring.datasource.url=jdbc:postgresql://localhost/perfume?currentSchema=perfume_migrations
-    # spring.flyway.schemas=perfume_migrations
-    # spring.jpa.properties.hibernate.default_schema=perfume_migrations
-    ```
-
-4. Run the Flyway migration script (Change `perfume_migrations` with schema's name you want.):
+8. Run the Flyway migration script (Change `perfume_migrations` with schema's name you want.):
 
     ```sh
     mvn flyway:migrate -Dflyway.schemas=perfume_migrations -Dflyway.url=jdbc:postgresql://localhost/perfume -Dflyway.user=haven_app -Dflyway.password=123456789
     ```
 
-5. Run the application as described in the next section.
+9. Run the application as described in the next section.
 
 See [StackOverflow Question](https://stackoverflow.com/q/75463561/16768401) for more information on why we need to create separate schemas.
 
 </details>
 
-### 4. Run the Application
+
+
+### 3. Run the Application
 
 <details>
 <summary>Click to expand!</summary>
