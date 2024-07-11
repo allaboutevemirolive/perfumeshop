@@ -20,7 +20,7 @@ import java.util.List;
 public class PerfumeServiceImpl implements PerfumeService {
 
     private final PerfumeRepository perfumeRepository;
-    private final ModelMapper modelMapper;
+    private final ModelMapper modelMapper; // TODO: Remove unsused import
 
     public PerfumeServiceImpl(PerfumeRepository perfumeRepository, ModelMapper modelMapper) {
         this.perfumeRepository = perfumeRepository;

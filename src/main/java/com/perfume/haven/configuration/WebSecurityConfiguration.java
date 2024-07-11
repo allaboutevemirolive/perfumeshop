@@ -17,6 +17,7 @@ import org.springframework.security.authentication.dao.DaoAuthenticationProvider
 @EnableMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfiguration {
 
+    // TODO: Remove unused value
     private final UserServiceImpl userService;
     private final UserDetailsServiceImpl userDetailsService;
     private final PasswordEncoder passwordEncoder;
@@ -29,6 +30,7 @@ public class WebSecurityConfiguration {
         this.passwordEncoder = passwordEncoder;
     }
 
+    // TODO: Replace deprecate method
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http

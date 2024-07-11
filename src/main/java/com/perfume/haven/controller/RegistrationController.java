@@ -6,6 +6,7 @@ import com.perfume.haven.dto.request.UserRequest;
 import com.perfume.haven.dto.response.MessageResponse;
 import com.perfume.haven.service.RegistrationService;
 import com.perfume.haven.utils.ControllerUtils;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;

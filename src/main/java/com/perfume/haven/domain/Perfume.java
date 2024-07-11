@@ -63,6 +63,8 @@ public class Perfume {
     public Perfume() {
     }
 
+    // TODO: Remove this? This need to be improve. Logically in ecommerce app, we
+    // already insert product in database with sql, not during runtime. But maybe we stil need this
     public Perfume(Long id, String perfumeTitle, String perfumer, Integer year, String country, String perfumeGender,
             String fragranceTopNotes, String fragranceMiddleNotes, String fragranceBaseNotes, String description,
             String filename, Integer price, String volume, String type) {

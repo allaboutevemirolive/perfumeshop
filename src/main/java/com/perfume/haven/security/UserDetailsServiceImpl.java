@@ -2,6 +2,7 @@ package com.perfume.haven.security;
 
 import com.perfume.haven.domain.User;
 import com.perfume.haven.repository.UserRepository;
+
 import org.springframework.security.authentication.LockedException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
